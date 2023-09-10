@@ -6,10 +6,11 @@ export function Analytics() {
 		return null;
 	}
 	return (
-		<script
-			src="https://beamanalytics.b-cdn.net/beam.min.js"
-			data-token={token}
-			async
-		/>
+		<></>
+		// <script
+		// 	src="https://beamanalytics.b-cdn.net/beam.min.js"
+		// 	data-token={token}
+		// 	async
+		// />
 	);
 }
