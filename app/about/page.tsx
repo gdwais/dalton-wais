@@ -1,72 +1,54 @@
-import Link from "next/link";
-import React from "react";
+"use client";
+
+import { useState } from "react";
+import { Navigation } from "../components/nav";
 import Particles from "../components/particles";
 
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Writings", href: "https://medium.com/@daltonwais" },
-  { name: "Contact", href: "/contact" },
-];
+const startDate = new Date("November 1, 2013");
 
 export default function About() {
+  const [now, setNow] = useState<Date>(new Date());
+
+  const [years, setYears] = useState<string>(
+    (now.getFullYear() - startDate.getFullYear()).toString(),
+  );
+  const [months, setMonths] = useState<string>("24");
+  const [weeks, setWeeks] = useState<string>("24");
+  const [days, setDays] = useState<string>("12");
+  const [hours, setHours] = useState<string>("14");
+  const [minutes, setMinutes] = useState<string>("61");
+  const [seconds, setSeconds] = useState<string>("574");
+
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-screen overflow-hidden bg-gradient-to-tl from-[#002451] via-zinc-600/20 to-[#002451]">
-      <nav className="my-12 animate-fade-in">
-        <ul className="flex items-center justify-center gap-4">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-lg duration-500 text-zinc-300 hover:text-white mx-8"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </ul>
-      </nav>
-      <div className="hidden w-screen h-px animate-glow md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
+    <div className="container mx-auto flex mt-24 items-center justify-center px-4 text-white">
+      <Navigation currentPage="about" />
       <Particles
         className="absolute inset-0 -z-10 animate-fade-in"
         quantity={500}
       />
-      <h1 className="z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text ">
-        <span className="text-[120px]">{"{"}</span>
-        about
-        <span className="text-[120px]">{"}"}</span>
-      </h1>
+      <div className="flex flex-row flex-wrap py-4">
+        <aside className="w-full sm:w-1/3 md:w-1/4 px-2">
+          <div className="sticky top-0 p-4 w-full">
+            <Navigation currentPage="about" />
 
-      <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-white/0" />
-      <div className="my-12 text-center animate-fade-in">
-        <h2 className="text-lg text-zinc-300 flex flex-grow">
-          Hello! I am a 10 year veteran of software development with experience
-          in a variety of industry standard and open source technologies -
-          emphasizing open mindedness and continuous growth. I love what I do
-          and enjoy meeting complex problems with elegant and forward thinking
-          solutions.
-        </h2>
-        <br />
-        <h2 className="text-lg text-zinc-300 flex flex-grow">
-          I am naturally gifted in leadership and team management including
-          direction settings, mentoring, making technology or architecture
-          decisions and long term project vision. I take ownership of the
-          projects that I lead and intend to be an active participant in the
-          success of a project. This means considering the entire holistic
-          picture of an application and how it meets the intended purpose.
-        </h2>
-        <br />
-        <h2 className="text-lg text-zinc-300 flex flex-grow">
-          I have worked with a wide variety of technologies in my career and
-          have always tried to focus more on concepts than specific syntax or
-          language barriers. This allows me to easily pick up new tools and
-          languages with ease. I have used extensively and am comfortable with
-          the following technologies: Javascript | Typescript | ReactJS |
-          Angular | NodeJS | C#/.NET | Ruby on Rails Microsoft SQL | MySQL |
-          Postgres | MongoDb | Redis Docker | AWS | Heroku | Vercel
-        </h2>
+            <ul className="flex flex-col overflow-hidden">
+              <img src="/personal_avatar.jpg" />
+            </ul>
+          </div>
+        </aside>
+        <main role="main" className="w-full sm:w-2/3 md:w-3/4 pt-1 px-2">
+          <span className="text-4xl">about me</span>
+          <br />
+          {`I started writing code professionally on ${startDate.toString()}.`}
+          <div>{years} years</div>
+          <div>{months} months</div>
+          <div>{weeks} weeks</div>
+          <div>{days} days</div>
+          <div>{hours} hous</div>
+          <div>{minutes} minutes</div>
+          <div>{seconds} seconds</div>
+        </main>
       </div>
-      <div></div>
     </div>
   );
 }
