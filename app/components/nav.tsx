@@ -29,11 +29,11 @@ export const Navigation: React.FC<NavigationProps> = ({
       label: "About",
       route: "/about",
     },
-    // {
-    //   name: "services",
-    //   label: "Services",
-    //   route: "/services",
-    // },
+    {
+      name: "services",
+      label: "Services",
+      route: "/services",
+    },
     {
       name: "contact",
       label: "Contact",

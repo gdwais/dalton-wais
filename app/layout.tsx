@@ -2,17 +2,18 @@ import "../global.css";
 import { Inter } from "@next/font/google";
 import LocalFont from "@next/font/local";
 import { Metadata } from "next";
-import { Analytics } from "./components/analytics";
+import { AppContextProvider } from "./context/app.context";
+import App from "next/app";
 
 export const metadata: Metadata = {
   title: {
-    default: "daltonwais.com",
+    default: "Dalton Wais",
     template: "%s | daltonwais.com",
   },
   description: "Software Developer, Consultant and Technologist",
   openGraph: {
-    title: "daltonwais.com",
-    description: "Software Developer, Consultant and Technologist",
+    title: "Dalton Wais",
+    description: "Builder, Software Developer & Fractional CTO",
     url: "https://daltonwais.com",
     siteName: "daltonwais.com",
     images: [
@@ -77,7 +78,7 @@ export default function RootLayout({
           process.env.NODE_ENV === "development" ? "debug-screens" : undefined
         }`}
       >
-        {children}
+        <AppContextProvider>{children}</AppContextProvider>
       </body>
     </html>
   );
