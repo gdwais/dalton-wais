@@ -38,11 +38,11 @@ export default function Home() {
         <h2 className="text-lg text-zinc-300 flex flex-grow">
           <div className="mx-12">
             {/* <a href="/services/fcto">Fractional CTO</a> */}
-            Builder
+            Freelance Software Developer
           </div>{" "}
           <div>💻</div> <div className="mx-12"> Technology Consultant </div>
           <div> 🚀 </div>
-          <div className="mx-12"> Software Engineer</div>
+          <div className="mx-12">SQL Database Admin</div>
         </h2>
         <ParticleTooltip />
       </div>
