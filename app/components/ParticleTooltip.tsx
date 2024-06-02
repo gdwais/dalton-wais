@@ -10,8 +10,14 @@ import FacebookIcon from "@material-ui/icons/Facebook";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
-import { MinusIcon, PlusIcon } from "lucide-react";
-import { ArrowBack } from "@material-ui/icons";
+import { MinusIcon, PlusIcon, Settings2Icon } from "lucide-react";
+import {
+  ArrowBack,
+  ArrowRightAltRounded,
+  Refresh,
+  Settings,
+  SettingsBackupRestoreSharp,
+} from "@material-ui/icons";
 import { AppContext, ReducerActions } from "../context/app.context";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -35,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function ParticleTooltip() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [icon, setIcon] = React.useState(<FavoriteBorderIcon />);
+  const [icon, setIcon] = React.useState(<Settings2Icon />);
 
   const { dispatch } = useContext(AppContext);
 
@@ -47,7 +53,7 @@ export default function ParticleTooltip() {
           onClick={() => handleClick(ReducerActions.INCREMENT_COUNT)}
         />
       ),
-      name: "Increment",
+      name: "More Particles",
     },
     {
       icon: (
@@ -56,11 +62,11 @@ export default function ParticleTooltip() {
           onClick={() => handleClick(ReducerActions.DECREMENT_COUNT)}
         />
       ),
-      name: "Decrement",
+      name: "Less Particles",
     },
     {
       icon: (
-        <ArrowBack
+        <Refresh
           style={{ fill: "#3f729b" }}
           onClick={() => handleClick(ReducerActions.RESET_COUNT)}
         />
@@ -77,12 +83,12 @@ export default function ParticleTooltip() {
 
   const handleOpen = () => {
     setOpen(true);
-    setIcon(<FavoriteIcon style={{ fill: "#d24769" }} />);
+    setIcon(<Settings2Icon style={{ fill: "#d24769" }} />);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setIcon(<FavoriteBorderIcon />);
+    setIcon(<Settings2Icon />);
   };
 
   return (
