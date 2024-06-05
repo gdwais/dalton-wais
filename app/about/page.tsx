@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Navigation } from "../components/nav";
 import Particles from "../components/particles";
 
@@ -14,15 +15,29 @@ export default function About() {
             <Navigation currentPage="about" />
 
             <ul className="flex flex-col overflow-hidden">
-              <img src="/personal_avatar.jpg" />
+              <Image
+                className="rounded-lg shadow-lg "
+                alt=""
+                src="/personal_avatar.jpg"
+                width={200}
+                height={200}
+              />
             </ul>
           </div>
         </aside>
-        <main role="main" className="w-full sm:w-2/3 md:w-3/4 pt-1 px-2">
-          <span className="text-4xl"></span>
-          Hi! I'm Dalton - I write code and build things. I love what I do want
-          to do more of it.
-          <br />
+        <main
+          role="main"
+          className="flex flex-col w-full sm:w-2/3 md:w-3/4 pt-1 px-2"
+        >
+          <div className="bg-black rounded-md bg-opacity-40 p-2 my-4">
+            <span className="text-lg">
+              Hi! I'm Dalton - I write code and build things. I love what I do
+              want to do more of it.
+            </span>
+          </div>
+          {/* <div className="bg-black rounded-md bg-opacity-40 p-2 my-4">
+            Second Section
+          </div> */}
           {``}
         </main>
       </div>

@@ -30,13 +30,13 @@ const reducer = (state: AppState, action: Actions) => {
     case ReducerActions.INCREMENT_COUNT:
       return {
         ...state,
-        particleCount: state.particleCount + 100,
+        particleCount: state.particleCount + 500,
         refresh: !state.refresh,
       };
     case ReducerActions.DECREMENT_COUNT:
       return {
         ...state,
-        particleCount: state.particleCount - 100,
+        particleCount: state.particleCount - 500,
         refresh: !state.refresh,
       };
     case ReducerActions.RESET_COUNT:
