@@ -27,11 +27,21 @@ const socials = [
 
 export default function Contact() {
   return (
-    <div className=" from-zinc-900/0 to-zinc-900/0">
+    <div className="relative pb-16">
       <Navigation currentPage="contact" />
-      <div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
-        <div className="grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16">
-          <Particles className="absolute inset-0 -z-10 animate-fade-in" />
+      <div className="px-6 pt-16 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
+        <div className="max-w-2xl mx-auto lg:mx-0">
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
+            Contact
+          </h2>
+          <p className="mt-4 text-zinc-400">
+            Let's connect! Reach out through any of these channels.
+          </p>
+        </div>
+
+        <div className="w-full h-px bg-zinc-800" />
+
+        <div className="grid grid-cols-1 gap-8 mx-auto sm:grid-cols-2 lg:grid-cols-3">
           {socials.map((s) => (
             <Card>
               <Link
@@ -40,12 +50,12 @@ export default function Contact() {
                 className="p-4 relative flex flex-col items-center gap-4 duration-700 group md:gap-8 md:py-24  lg:pb-48  md:p-16"
               >
                 <span
-                  className="absolute w-px h-2/3  from-zinc-500 to-transparent"
+                  className="absolute w-px h-2/3 from-zinc-500 to-transparent"
                   aria-hidden="true"
                 />
                 <span className="relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-zinc-900 border-zinc-500 bg-zinc-900 group-hover:border-zinc-200 drop-shadow-orange">
                   {s.icon}
-                </span>{" "}
+                </span>
                 <div className="z-10 flex flex-col items-center">
                   <span className="text-xl font-medium duration-150 lg:text-3xl text-zinc-200 group-hover:text-white font-display">
                     {s.handle}
@@ -59,6 +69,7 @@ export default function Contact() {
           ))}
         </div>
       </div>
+      <Particles className="absolute inset-0 -z-10 animate-fade-in" />
     </div>
   );
 }

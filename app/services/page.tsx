@@ -1,35 +1,75 @@
 "use client";
+import Link from "next/link";
 import { Navigation } from "../components/nav";
 import Particles from "../components/particles";
 
+const navigation = [
+  { name: "About", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Writings", href: "https://medium.com/@daltonwais" },
+  { name: "Contact", href: "/contact" },
+];
+
 export default function Services() {
   return (
-    <div className="  from-zinc-900/0  to-zinc-900/0">
-      <Particles className="absolute inset-0 -z-10 animate-fade-in" />
+    <div className="flex flex-col min-h-screen bg-gradient-to-tl from-[#002451] to-[#002451] p-8 md:p-24">
+      <Particles className="absolute inset-0 -z-10" />
       <Navigation currentPage="services" />
-      <div className="container flex flex-col items-center justify-center min-h-screen px-4 mx-auto text-white">
-        <div className="flex bg-black rounded-md bg-opacity-40 p-2 my-4 w-[1000px] h-[500px]">
-          <span className="text-lg mx-auto">
-            I can do just about anything - feel free to reach out so we can
-            chat! 👋
-          </span>
+
+      <main className="max-w-4xl mx-auto mt-16">
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-8">
+          Services
+        </h1>
+        <p className="text-zinc-400 text-lg mb-12">
+          I offer comprehensive technology solutions to help businesses thrive
+          in the digital age. Let's collaborate to bring your vision to life.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-black/40 rounded-lg p-6">
+            <h3 className="text-xl font-bold text-white mb-3">
+              💻 Technology Consulting
+            </h3>
+            <p className="text-zinc-400">
+              Strategic technology planning, architecture design, and digital
+              transformation guidance to help your business leverage the right
+              tools and processes.
+            </p>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-6">
+            <h3 className="text-xl font-bold text-white mb-3">
+              🔧 Website Design
+            </h3>
+            <p className="text-zinc-400">
+              Modern, responsive web applications built with the latest
+              technologies. Focus on user experience, performance, and
+              maintainability.
+            </p>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-6">
+            <h3 className="text-xl font-bold text-white mb-3">
+              👨🏽‍💻 Fractional CTO
+            </h3>
+            <p className="text-zinc-400">
+              Part-time technical leadership to help guide your technology
+              strategy, team development, and technical decision-making.
+            </p>
+          </div>
+
+          <div className="bg-black/40 rounded-lg p-6">
+            <h3 className="text-xl font-bold text-white mb-3">
+              🚀 Contractor Oversight
+            </h3>
+            <p className="text-zinc-400">
+              Technical project management and quality assurance for your
+              contractor teams. Ensure deliverables meet expectations and align
+              with business goals.
+            </p>
+          </div>
         </div>
-        <br />
-        <div className="flex w-full flex-row">
-          <div className="flex w-1/4 mx-4 bg-black rounded-md bg-opacity-40 p-2 my-4">
-            <span className="mx-auto">💻 Technology Consulting</span>
-          </div>
-          <div className="flex w-1/4 mx-4 bg-black rounded-md bg-opacity-40 p-2 my-4">
-            <span className="mx-auto">🔧 Website Design</span>
-          </div>
-          <div className="flex w-1/4 mx-4 bg-black rounded-md bg-opacity-40 p-2 my-4">
-            <span className="mx-auto">👨🏽‍💻 Fractional CTO</span>
-          </div>
-          <div className="flex w-1/4 mx-4 bg-black rounded-md bg-opacity-40 p-2 my-4">
-            <span className="mx-auto">🚀 Contractor Oversight</span>
-          </div>
-        </div>
-      </div>
+      </main>
     </div>
   );
 }

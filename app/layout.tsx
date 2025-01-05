@@ -3,7 +3,6 @@ import { Inter } from "@next/font/google";
 import LocalFont from "@next/font/local";
 import { Metadata } from "next";
 import { AppContextProvider } from "./context/app.context";
-import App from "next/app";
 
 export const metadata: Metadata = {
   title: {

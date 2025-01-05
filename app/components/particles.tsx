@@ -9,12 +9,14 @@ interface ParticlesProps {
 
   staticity?: number;
   ease?: number;
+  showLines?: boolean;
 }
 
 export default function Particles({
   className = "",
   staticity = 100,
   ease = 50,
+  showLines = true,
 }: ParticlesProps) {
   const { state, dispatch } = useContext(AppContext);
 
@@ -98,12 +100,12 @@ export default function Particles({
     const y = Math.floor(Math.random() * canvasSize.current.h);
     const translateX = 0;
     const translateY = 0;
-    const size = Math.floor(Math.random() * 2) + 0.1;
+    const size = Math.floor(Math.random() * state.particleSize) + 0.1;
     const alpha = 0;
     const targetAlpha = parseFloat((Math.random() * 0.6 + 0.1).toFixed(1));
-    const dx = (Math.random() - 0.5) * 0.2;
-    const dy = (Math.random() - 0.5) * 0.2;
-    const magnetism = 0.1 + Math.random() * 4;
+    const dx = (Math.random() - 0.5) * state.particleSpeed;
+    const dy = (Math.random() - 0.5) * state.particleSpeed;
+    const magnetism = 0.1 + Math.random() * 1;
     return {
       x,
       y,
@@ -124,7 +126,10 @@ export default function Particles({
       context.current.translate(translateX, translateY);
       context.current.beginPath();
       context.current.arc(x, y, size, 0, 2 * Math.PI);
-      context.current.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+
+      //const color = `hsla(${state.particleColor}, 100%, 75%, ${alpha})`;
+      const color = `hsla(123, 100%, 40%, ${alpha})`;
+      context.current.fillStyle = color;
       context.current.fill();
       context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
 
@@ -165,8 +170,54 @@ export default function Particles({
     return remapped > 0 ? remapped : 0;
   };
 
+  const drawLines = () => {
+    if (!context.current || !showLines || state.lineMaxDistance === 0) return;
+
+    circles.current.forEach((circle: Circle, i: number) => {
+      circles.current.slice(i + 1).forEach((otherCircle: Circle) => {
+        const dx =
+          circle.x +
+          circle.translateX -
+          (otherCircle.x + otherCircle.translateX);
+        const dy =
+          circle.y +
+          circle.translateY -
+          (otherCircle.y + otherCircle.translateY);
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        const maxDistance = state.lineMaxDistance * 6;
+
+        if (distance < maxDistance) {
+          const opacity =
+            (1 - distance / maxDistance) *
+            Math.min(circle.alpha, otherCircle.alpha) *
+            0.5;
+
+          context.current!.beginPath();
+          context.current!.moveTo(
+            circle.x + circle.translateX,
+            circle.y + circle.translateY,
+          );
+          context.current!.lineTo(
+            otherCircle.x + otherCircle.translateX,
+            otherCircle.y + otherCircle.translateY,
+          );
+
+          const color = `hsla(${state.particleColor}, 100%, 75%, ${opacity})`;
+          context.current!.strokeStyle = color;
+          context.current!.lineWidth = 0.5;
+          context.current!.stroke();
+        }
+      });
+    });
+  };
+
   const animate = () => {
     clearContext();
+
+    // Draw lines first (behind particles)
+    drawLines();
+
     circles.current.forEach((circle: Circle, i: number) => {
       // Handle the alpha value
       const edge = [
@@ -222,6 +273,7 @@ export default function Particles({
         );
       }
     });
+
     window.requestAnimationFrame(animate);
   };
 

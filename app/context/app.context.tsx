@@ -5,11 +5,18 @@ import React, { Dispatch, createContext, useReducer } from "react";
 type AppState = {
   particleCount: number;
   refresh: boolean;
+  particleSize: number;
+  particleSpeed: number;
+  lineMaxDistance: number;
+  particleColor: number;
 };
 
 type Actions = {
   type: ReducerActions;
-  value?: number | string;
+  payload?: {
+    parameter: string;
+    value: number;
+  };
 };
 
 export enum ReducerActions {
@@ -17,36 +24,154 @@ export enum ReducerActions {
   DECREMENT_COUNT,
   RESET_COUNT,
   SET_COUNT,
+  INCREASE_SIZE,
+  DECREASE_SIZE,
+  INCREASE_SPEED,
+  DECREASE_SPEED,
+  INCREASE_MAGNETISM,
+  DECREASE_MAGNETISM,
+  UPDATE_PARAMETER,
+  RESET_ALL,
 }
 
 const initialState: AppState = {
-  particleCount: 100,
+  particleCount: 500,
   refresh: false,
+  particleSize: 3,
+  particleSpeed: 0.5,
+  lineMaxDistance: 100,
+  particleColor: 0,
+};
+
+const loadInitialState = (): AppState => {
+  if (typeof window === "undefined") return initialState;
+
+  const savedState = localStorage.getItem("particleSettings");
+  return savedState ? JSON.parse(savedState) : initialState;
 };
 
 const reducer = (state: AppState, action: Actions) => {
-  console.log("reducer fired", { state, action });
+  let newState: AppState;
+
   switch (action.type) {
     case ReducerActions.INCREMENT_COUNT:
-      return {
+      newState = {
         ...state,
-        particleCount: state.particleCount + 500,
+        particleCount: state.particleCount + 1000,
         refresh: !state.refresh,
       };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
     case ReducerActions.DECREMENT_COUNT:
-      return {
+      newState = {
         ...state,
-        particleCount: state.particleCount - 500,
+        particleCount: Math.max(100, state.particleCount - 1000),
         refresh: !state.refresh,
       };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
     case ReducerActions.RESET_COUNT:
-      return { ...state, particleCount: 100, refresh: !state.refresh };
-    case ReducerActions.SET_COUNT:
-      return {
-        ...state,
-        particleCount: action.value as number,
+      newState = {
+        ...initialState,
         refresh: !state.refresh,
       };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
+    case ReducerActions.SET_COUNT:
+      newState = {
+        ...state,
+        particleCount: action.payload?.value ?? state.particleCount,
+        refresh: !state.refresh,
+      };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
+    case ReducerActions.INCREASE_SIZE:
+      newState = {
+        ...state,
+        particleSize: Math.min(state.particleSize + 1, 8),
+        refresh: !state.refresh,
+      };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
+    case ReducerActions.DECREASE_SIZE:
+      newState = {
+        ...state,
+        particleSize: Math.max(state.particleSize - 1, 0.5),
+        refresh: !state.refresh,
+      };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
+    case ReducerActions.INCREASE_SPEED:
+      newState = {
+        ...state,
+        particleSpeed: Math.min(state.particleSpeed + 0.3, 2),
+        refresh: !state.refresh,
+      };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
+    case ReducerActions.DECREASE_SPEED:
+      newState = {
+        ...state,
+        particleSpeed: Math.max(state.particleSpeed - 0.3, 0.1),
+        refresh: !state.refresh,
+      };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
+
+    case ReducerActions.UPDATE_PARAMETER:
+      if (!action.payload) return state;
+
+      const { parameter, value } = action.payload;
+      switch (parameter) {
+        case "speed":
+          newState = {
+            ...state,
+            particleSpeed: value / 50,
+            refresh: !state.refresh,
+          };
+          break;
+        case "particleCount":
+          newState = {
+            ...state,
+            particleCount: value,
+            refresh: !state.refresh,
+          };
+          break;
+        case "size":
+          newState = {
+            ...state,
+            particleSize: value,
+            refresh: !state.refresh,
+          };
+          break;
+        case "lineDistance":
+          newState = {
+            ...state,
+            lineMaxDistance: value,
+            refresh: !state.refresh,
+          };
+          break;
+        case "color":
+          newState = {
+            ...state,
+            particleColor: value,
+            refresh: !state.refresh,
+          };
+          break;
+        default:
+          return state;
+      }
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
+
+    case ReducerActions.RESET_ALL:
+      newState = {
+        ...initialState,
+        refresh: !state.refresh,
+      };
+      localStorage.setItem("particleSettings", JSON.stringify(newState));
+      return newState;
+
     default:
       return state;
   }
@@ -62,7 +187,7 @@ export const AppContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, loadInitialState());
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

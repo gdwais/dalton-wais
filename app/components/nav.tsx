@@ -7,9 +7,7 @@ type NavigationProps = {
   currentPage: string;
 };
 
-export const Navigation: React.FC<NavigationProps> = ({
-  currentPage,
-}: NavigationProps) => {
+export const Navigation: React.FC<NavigationProps> = ({ currentPage }) => {
   const ref = useRef<HTMLElement>(null);
   const [isIntersecting, setIntersecting] = useState(true);
 
@@ -25,6 +23,11 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   const links = [
     {
+      name: "home",
+      label: "Home",
+      route: "/",
+    },
+    {
       name: "about",
       label: "About",
       route: "/about",
@@ -35,6 +38,11 @@ export const Navigation: React.FC<NavigationProps> = ({
       route: "/services",
     },
     {
+      name: "writings",
+      label: "Writings",
+      route: "https://medium.com/@daltonwais",
+    },
+    {
       name: "contact",
       label: "Contact",
       route: "/contact",
@@ -43,35 +51,21 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <header ref={ref}>
-      <div
-        className={`fixed inset-x-0 top-0 z-50 backdrop-blur  duration-200 border-b  ${
-          isIntersecting
-            ? "bg-zinc-900/0 border-transparent"
-            : "bg-zinc-900/500  border-zinc-800 "
-        }`}
-      >
-        <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
+      <div className={`fixed inset-x-0 top-0 z-50 duration-200`}>
+        <div className="container flex items-center justify-end p-6 mx-auto">
           <div className="flex justify-between gap-8">
             {links
               .filter((l) => l.name !== currentPage)
-              .map((l) => {
-                return (
-                  <Link
-                    href={l.route}
-                    className="duration-200 text-zinc-400 hover:text-zinc-100"
-                  >
-                    {l.label}
-                  </Link>
-                );
-              })}
+              .map((l) => (
+                <Link
+                  key={l.route}
+                  href={l.route}
+                  className="duration-200 text-zinc-400 hover:text-zinc-100"
+                >
+                  {l.label}
+                </Link>
+              ))}
           </div>
-
-          <Link
-            href="/"
-            className="duration-200 text-zinc-300 hover:text-zinc-100"
-          >
-            <ArrowLeft className="w-6 h-6 " />
-          </Link>
         </div>
       </div>
     </header>
