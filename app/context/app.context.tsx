@@ -35,12 +35,12 @@ export enum ReducerActions {
 }
 
 const initialState: AppState = {
-  particleCount: 500,
+  particleCount: 100,
   refresh: false,
   particleSize: 3,
   particleSpeed: 0.5,
   lineMaxDistance: 100,
-  particleColor: 0,
+  particleColor: 123,
 };
 
 const loadInitialState = (): AppState => {
