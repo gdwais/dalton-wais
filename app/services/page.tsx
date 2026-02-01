@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
-import Particles from "../components/particles";
 
 const navigation = [
   { name: "About", href: "/about" },
@@ -12,61 +11,81 @@ const navigation = [
 
 export default function Services() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-tl from-[#002451] to-[#002451] p-8 md:p-24">
-      <Particles className="absolute inset-0 -z-10" />
+    <div className="flex flex-col min-h-screen p-8 md:p-24">
       <Navigation currentPage="services" />
 
       <main className="max-w-4xl mx-auto mt-16">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-8">
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
           Services
         </h1>
-        <p className="text-zinc-400 text-lg mb-12">
-          I offer comprehensive technology solutions to help businesses thrive
-          in the digital age. Let's collaborate to bring your vision to life.
+        <p className="text-zinc-100 text-lg mb-12 max-w-2xl">
+          I help teams ship AI features faster and automate the workflows that
+          slow them down. Here's how we can work together.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-black/40 rounded-lg p-6">
+        <div className="grid grid-cols-1 gap-8">
+          <div className="bg-black/40 rounded-lg p-8">
             <h3 className="text-xl font-bold text-white mb-3">
-              💻 Technology Consulting
+              AI Integration & Automation
             </h3>
-            <p className="text-zinc-400">
-              Strategic technology planning, architecture design, and digital
-              transformation guidance to help your business leverage the right
-              tools and processes.
+            <p className="text-zinc-100 mb-4">
+              Turn AI pilots into production systems. I build LLM-powered
+              features, RAG pipelines, and workflow automation using tools like
+              OpenAI, LangChain, and vector databases.
             </p>
+            <div className="text-zinc-100 text-sm">
+              <span className="text-zinc-100 font-medium">Deliverables:</span>{" "}
+              Working prototype, architecture documentation, deployment guide,
+              and handoff to your team.
+            </div>
           </div>
 
-          <div className="bg-black/40 rounded-lg p-6">
+          <div className="bg-black/40 rounded-lg p-8">
             <h3 className="text-xl font-bold text-white mb-3">
-              🔧 Website Design
+              Fractional CTO
             </h3>
-            <p className="text-zinc-400">
-              Modern, responsive web applications built with the latest
-              technologies. Focus on user experience, performance, and
-              maintainability.
+            <p className="text-zinc-100 mb-4">
+              Part-time technical leadership for early-stage companies. I help
+              with architecture decisions, hiring your first engineers, vendor
+              selection, and building your technical roadmap.
             </p>
+            <div className="text-zinc-100 text-sm">
+              <span className="text-zinc-100 font-medium">Engagement:</span>{" "}
+              Typically 10-20 hours/month. Weekly syncs, async Slack access,
+              code reviews, and architecture guidance.
+            </div>
           </div>
 
-          <div className="bg-black/40 rounded-lg p-6">
+          <div className="bg-black/40 rounded-lg p-8">
             <h3 className="text-xl font-bold text-white mb-3">
-              👨🏽‍💻 Fractional CTO
+              Full-Stack Development
             </h3>
-            <p className="text-zinc-400">
-              Part-time technical leadership to help guide your technology
-              strategy, team development, and technical decision-making.
+            <p className="text-zinc-100 mb-4">
+              End-to-end product development in React, Node.js, and TypeScript.
+              I've shipped B2B SaaS products in HR, benefits, and enterprise
+              software.
             </p>
+            <div className="text-zinc-100 text-sm">
+              <span className="text-zinc-100 font-medium">Deliverables:</span>{" "}
+              Production-ready code, CI/CD pipeline, test coverage, and
+              documentation.
+            </div>
           </div>
 
-          <div className="bg-black/40 rounded-lg p-6">
+          <div className="bg-black/40 rounded-lg p-8">
             <h3 className="text-xl font-bold text-white mb-3">
-              🚀 Contractor Oversight
+              Technical Due Diligence
             </h3>
-            <p className="text-zinc-400">
-              Technical project management and quality assurance for your
-              contractor teams. Ensure deliverables meet expectations and align
-              with business goals.
+            <p className="text-zinc-100 mb-4">
+              Independent assessment of codebases, architecture, and engineering
+              teams for investors or acquirers. I identify technical debt,
+              security risks, and scalability concerns.
             </p>
+            <div className="text-zinc-100 text-sm">
+              <span className="text-zinc-100 font-medium">Deliverables:</span>{" "}
+              Written report with findings, risk assessment, and
+              recommendations.
+            </div>
           </div>
         </div>
       </main>

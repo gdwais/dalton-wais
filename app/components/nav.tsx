@@ -60,7 +60,7 @@ export const Navigation: React.FC<NavigationProps> = ({ currentPage }) => {
                 <Link
                   key={l.route}
                   href={l.route}
-                  className="duration-200 text-zinc-400 hover:text-zinc-100"
+                  className="duration-200 text-zinc-100 hover:text-zinc-100"
                 >
                   {l.label}
                 </Link>

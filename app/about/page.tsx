@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import Particles from "../components/particles";
 import { Navigation } from "../components/nav";
 
 const navigation = [
@@ -14,12 +13,11 @@ const navigation = [
 
 export default function About() {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-tl from-[#002451] to-[#002451] p-8 md:p-24">
-      <Particles className="absolute inset-0 -z-1" />
+    <div className="flex flex-col min-h-screen p-8 md:p-24">
       <Navigation currentPage="about" />
 
       <main className="max-w-4xl">
-        <div className="flex items-start gap-8 mb-12">
+        <div className="flex flex-col md:flex-row items-start gap-8 mb-12">
           <Image
             className="rounded-lg shadow-lg w-48 h-48 object-cover"
             alt="Dalton Wais"
@@ -29,56 +27,67 @@ export default function About() {
           />
           <div>
             <h1 className="text-4xl font-bold text-white mb-4">About Me</h1>
-            <p className="text-zinc-400 text-lg mb-6">
-              With over a decade of experience in software development, I've
-              built a career focused on solving complex problems with elegant
-              solutions. I specialize in B2B SaaS solutions, with particular
-              expertise in HR and benefits systems.
+            <p className="text-zinc-100 text-lg">
+              I'm a software engineer and technical leader with 10+ years
+              building B2B SaaS products. My focus is on automation and AI
+              integration—helping teams turn manual processes into systems that
+              scale.
             </p>
           </div>
         </div>
 
         <section className="space-y-8">
           <div className="bg-black/30 rounded-lg p-6">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              Technical Leadership
-            </h2>
-            <p className="text-zinc-400">
-              I excel in leadership and team management, bringing strong
-              direction-setting, mentoring, and architectural decision-making
-              skills. I take ownership of projects and actively participate in
-              ensuring their success.
+            <h2 className="text-2xl font-bold text-white mb-4">Current Work</h2>
+            <p className="text-zinc-100">
+              I'm a co-founder and engineer at{" "}
+              <a
+                href="https://usewinslow.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:underline"
+              >
+                Winslow
+              </a>
+              , an AI-native HR platform (Payroll, Benefits, HRIS, and
+              automation) built for AI-first companies. Winslow is 100%
+              conversational, extensible via plain-English workflows, and
+              integrates where teams already work.
             </p>
           </div>
 
           <div className="bg-black/30 rounded-lg p-6">
             <h2 className="text-2xl font-bold text-white mb-4">
-              Technical Expertise
+              Technical Background
             </h2>
-            <div className="text-zinc-400">
-              <p className="mb-4">Core technologies I work with include:</p>
+            <div className="text-zinc-100">
+              <p className="mb-4">
+                Full-stack development across the modern web stack, with recent
+                focus on workflow automation and AI:
+              </p>
               <ul className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                <li>Javascript/Typescript</li>
-                <li>React/React Native</li>
-                <li>NodeJS</li>
-                <li>C#/.NET</li>
-                <li>SQL/NoSQL Databases</li>
-                <li>AWS/Docker</li>
-                <li>LangChain</li>
-                <li>OpenAI</li>
-                <li>RAG/ChromaDB</li>
+                <li>TypeScript / Node.js</li>
+                <li>React / Next.js</li>
+                <li>Python</li>
+                <li>Automation (n8n, Make, Zapier)</li>
+                <li>Google Workspace (Sheets/Docs/Apps Script)</li>
+                <li>Slack Integrations</li>
+                <li>RAG / Vector DBs</li>
+                <li>PostgreSQL / Redis</li>
+                <li>Docker / CI/CD</li>
               </ul>
             </div>
           </div>
 
           <div className="bg-black/30 rounded-lg p-6">
-            <h2 className="text-2xl font-bold text-white mb-4">Current Role</h2>
-            <p className="text-zinc-400">
-              As a Founding Engineer at Winslow, I'm working on cutting-edge
-              AI-enabled HR efficiency solutions. My responsibilities include
-              architecting software applications, managing engineering teams,
-              and developing proof-of-concept applications using technologies
-              like WebRTC, LangChain, and OpenAI.
+            <h2 className="text-2xl font-bold text-white mb-4">
+              Leadership Experience
+            </h2>
+            <p className="text-zinc-100">
+              I've led engineering teams at early-stage startups and consulted
+              for companies scaling their technical operations. My approach
+              centers on clear architecture decisions, strong documentation, and
+              building systems that teams can maintain long-term.
             </p>
           </div>
         </section>

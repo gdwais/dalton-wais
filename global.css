@@ -4,7 +4,25 @@
 
 @layer base {
   .text-edge-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
   }
-} 
+
+  /* Subtle background illustration (reliable: render as a layered background, not a pseudo-element) */
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    background-color: #002451;
+    background-image: url("/bg-landscape.svg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    background-attachment: fixed;
+
+    /* Keep it subtle but visible */
+    background-blend-mode: normal;
+  }
+}
 

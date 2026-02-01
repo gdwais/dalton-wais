@@ -3,7 +3,7 @@ import { Github, Mail, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
-import Particles from "../components/particles";
+
 const socials = [
   {
     icon: <Linkedin size={20} />,
@@ -34,8 +34,9 @@ export default function Contact() {
           <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
             Contact
           </h2>
-          <p className="mt-4 text-zinc-400">
-            Let's connect! Reach out through any of these channels.
+          <p className="mt-4 text-zinc-100">
+            If you'd like to talk about automation, AI workflows, or product
+            development, reach out.
           </p>
         </div>
 
@@ -60,7 +61,7 @@ export default function Contact() {
                   <span className="text-xl font-medium duration-150 lg:text-3xl text-zinc-200 group-hover:text-white font-display">
                     {s.handle}
                   </span>
-                  <span className="mt-4 text-sm text-center duration-1000 text-zinc-400 group-hover:text-zinc-200">
+                  <span className="mt-4 text-sm text-center duration-1000 text-zinc-100 group-hover:text-zinc-200">
                     {s.label}
                   </span>
                 </div>
@@ -69,7 +70,6 @@ export default function Contact() {
           ))}
         </div>
       </div>
-      <Particles className="absolute inset-0 -z-10 animate-fade-in" />
     </div>
   );
 }

@@ -73,7 +73,7 @@ export default function RootLayout({
     >
       <head>{/* <Analytics /> */}</head>
       <body
-        className={`bg-[#002451] ${
+        className={`${
           process.env.NODE_ENV === "development" ? "debug-screens" : undefined
         }`}
       >
